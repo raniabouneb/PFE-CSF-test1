@@ -1,0 +1,103 @@
+"use client"
+
+import Image from "next/image"
+
+type PartnerLogo = {
+  id: number
+  name: string
+  logo: string
+}
+
+export function PartnerLogosMarquee({
+  partners,
+  speedSeconds = 26,
+}: {
+  partners: PartnerLogo[]
+  speedSeconds?: number
+}) {
+  const items = [...partners, ...partners]
+
+  return (
+    <div className="relative w-full overflow-hidden bg-[#EEF3FB] py-16">
+      {/* Edge fades */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#EEF3FB] to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#EEF3FB] to-transparent z-10" />
+
+      {/* Row 1 — droite → gauche */}
+      <div className="mb-4">
+        <div
+          className="csf-marquee-rtl flex items-center gap-4"
+          style={{ ["--csf-marquee-duration" as never]: `${speedSeconds}s` }}
+        >
+          {items.map((partner, idx) => (
+            <div
+              key={`rtl-${partner.id}-${idx}`}
+              className="flex-shrink-0 h-20 w-48 flex items-center justify-center bg-white rounded-2xl shadow-sm px-5"
+            >
+              <div className="relative h-10 w-full">
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  fill
+                  className="object-contain object-center mix-blend-multiply"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Row 2 — gauche → droite */}
+      <div>
+        <div
+          className="csf-marquee-ltr flex items-center gap-4"
+          style={{ ["--csf-marquee-duration" as never]: `${speedSeconds}s` }}
+        >
+          {items.map((partner, idx) => (
+            <div
+              key={`ltr-${partner.id}-${idx}`}
+              className="flex-shrink-0 h-20 w-48 flex items-center justify-center bg-white rounded-2xl shadow-sm px-5"
+            >
+              <div className="relative h-10 w-full">
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  fill
+                  className="object-contain object-center mix-blend-multiply"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style jsx global>{`
+        .csf-marquee-rtl {
+          width: max-content;
+          animation: csf-scroll-rtl var(--csf-marquee-duration) linear infinite;
+        }
+        @keyframes csf-scroll-rtl {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        .csf-marquee-ltr {
+          width: max-content;
+          animation: csf-scroll-ltr var(--csf-marquee-duration) linear infinite;
+        }
+        @keyframes csf-scroll-ltr {
+          0%   { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .csf-marquee-rtl,
+          .csf-marquee-ltr {
+            animation: none;
+            transform: none;
+          }
+        }
+      `}</style>
+    </div>
+  )
+}
