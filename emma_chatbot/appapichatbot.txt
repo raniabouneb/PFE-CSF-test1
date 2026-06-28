@@ -1,0 +1,131 @@
+ app/api/chatbot/
+app/api/chatbot/
+└── analyze-cv/
+    └── route.ts          → API d’analyse de CV
+2. components/shared/chatbot/
+components/shared/chatbot/
+├── chatbot-widget.tsx    → Widget principal du chat
+├── chat-message.tsx      → Affichage des messages
+├── cv-upload-button.tsx  → Bouton d’upload de CV
+└── quick-suggestions.tsx → Suggestions rapides
+3. lib/chatbot/
+
+lib/chatbot/
+├── cv-analyzer.ts        → Analyse du texte du CV
+├── intent-detector.ts    → Détection d’intention
+├── response-engine.ts    → Génération des réponses
+├── knowledge-base.ts     → Base de connaissances
+└── types.ts              → Types TypeScript
+
+
+ de dossier C:\Users\User\Desktop\emma_chatbot\PFE-CSF-test+chatbot
+
+
+
+
+
+
+
+ front end : cd "C:\Users\User\Desktop\emma_chatbot\PFE-CSF-yass\frontend"
+& "C:\Program Files\nodejs\npm.cmd" run dev
+
+
+beckend : cd "C:\Users\User\Desktop\emma_chatbot\PFE-CSF-yass\backend"
+.\.venv\Scripts\python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8010
+
+
+
+ front end : cd "C:\Users\User\Desktop\emma_chatbot\PFE-CSF-yass\frontend"
+& "C:\Program Files\nodejs\npm.cmd" run dev
+
+
+cd "c:\Users\User\Desktop\emma_chatbot\PFE-CSF-versioncsf22mai\frontend"
+npm run dev
+
+
+
+
+
+
+
+PS C:\Users\User\Desktop\emma_chatbot\PFE-CSF-versioncsf22mai> cd "c:\Users\User\Desktop\emma_chatbot\PFE-CSF-versioncsf22mai\frontend"
+>> npm run dev
+>> 
+>> 
+
+
+
+
+
+emna@gmail.com
+emma123
+
+
+
+
+
+
+
+
+Access blocked: CSF-PFE has not completed the Google verification process
+
+quality.csf@gmail.com
+CSF-PFE has not completed the Google verification process. The app is currently being tested, and can only be accessed by developer-approved testers. If you think you should have access, contact the developer.
+
+If you are a developer of CSF-PFE, see error details.
+
+Error 403: access_denied  sachant que cest admin  je veux que cette adreese  adresse a google calender et dite moi avant c quelle adressse doit tapez donner tous les aces a cette email  quality.csf@gmail.com 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mainetannaat je veux integrer  le chatbot   app/api/chatbot/
+app/api/chatbot/
+└── analyze-cv/
+    └── route.ts          → API d’analyse de CV
+2. components/shared/chatbot/
+components/shared/chatbot/
+├── chatbot-widget.tsx    → Widget principal du chat
+├── chat-message.tsx      → Affichage des messages
+├── cv-upload-button.tsx  → Bouton d’upload de CV
+└── quick-suggestions.tsx → Suggestions rapides
+3. lib/chatbot/
+
+lib/chatbot/
+├── cv-analyzer.ts        → Analyse du texte du CV
+├── intent-detector.ts    → Détection d’intention
+├── response-engine.ts    → Génération des réponses
+├── knowledge-base.ts     → Base de connaissances
+└── types.ts              → Types TypeScript
+
+
+ de dossier C:\Users\User\Desktop\emma_chatbot\PFE-CSF-test+chatbot
+ dasn ce projet 
+
+
+
+
+
+
+                            

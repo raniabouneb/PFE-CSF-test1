@@ -1,0 +1,5 @@
+export { AuthPageShell } from "./sections/auth-page-shell"
+export { LoginForm } from "./sections/login-form"
+export { SignupForm } from "./sections/signup-form"
+export { ConnexionPageView } from "./connexion-page"
+export { InscriptionPageView } from "./inscription-page"

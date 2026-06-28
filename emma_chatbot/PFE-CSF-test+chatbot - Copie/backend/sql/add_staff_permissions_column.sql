@@ -1,0 +1,2 @@
+ALTER TABLE staff_invite
+    ADD COLUMN IF NOT EXISTS permissions JSONB DEFAULT NULL;

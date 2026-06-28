@@ -1,0 +1,2 @@
+-- Obsolète : tout est regroupé dans `migrate_certification_card_v2.sql`.
+-- Exécutez ce fichier à la place pour créer module_id, image_url et remplir la table.

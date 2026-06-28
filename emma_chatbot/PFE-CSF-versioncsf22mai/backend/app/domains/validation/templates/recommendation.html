@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 25mm 25mm 25mm;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #1a202c;
+    line-height: 1.7;
+  }
+
+  .letterhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 3px solid #1a365d;
+    padding-bottom: 5mm;
+    margin-bottom: 10mm;
+  }
+  .org-block {
+    text-align: left;
+  }
+  .org-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1a365d;
+    letter-spacing: 3px;
+  }
+  .org-subtitle {
+    font-size: 11px;
+    color: #718096;
+    letter-spacing: 1px;
+  }
+  .date-block {
+    text-align: right;
+    font-size: 12px;
+    color: #4a5568;
+    margin-top: 4mm;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #1a365d;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 12mm 0 3mm;
+  }
+  .title-line {
+    width: 60mm;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #1a365d, transparent);
+    margin: 0 auto 10mm;
+  }
+
+  .body-text {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #2d3748;
+    margin-bottom: 5mm;
+    text-align: justify;
+  }
+  .body-text strong {
+    color: #1a365d;
+  }
+
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8mm 0;
+  }
+  .summary-table td {
+    padding: 3mm 4mm;
+    font-size: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+  }
+  .summary-table td:first-child {
+    font-weight: bold;
+    color: #4a5568;
+    width: 42%;
+  }
+
+  .result-badge {
+    display: inline-block;
+    padding: 1.5mm 5mm;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  .result-success { background: #c6f6d5; color: #276749; border: 1px solid #9ae6b4; }
+  .result-failure { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; }
+
+  .closing {
+    margin-top: 10mm;
+  }
+
+  .signature-area {
+    margin-top: 15mm;
+    text-align: right;
+    padding-right: 10mm;
+  }
+  .sig-line {
+    width: 55mm;
+    border-top: 1px solid #a0aec0;
+    margin-left: auto;
+    margin-bottom: 2mm;
+  }
+  .sig-name {
+    font-weight: bold;
+    font-size: 13px;
+    color: #2d3748;
+  }
+  .sig-role {
+    font-size: 11px;
+    color: #718096;
+  }
+
+  .footer {
+    margin-top: 20mm;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 4mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: #a0aec0;
+  }
+</style>
+</head>
+<body>
+  <div class="letterhead">
+    <div class="org-block">
+      <div class="org-name">CSF</div>
+      <div class="org-subtitle">Centre de Services et de Formation</div>
+    </div>
+    <div class="date-block">
+      {{ validation_date }}
+    </div>
+  </div>
+
+  <div class="title">Lettre de Recommandation</div>
+  <div class="title-line"></div>
+
+  <p class="body-text">
+    <strong>Objet :</strong> Recommandation de <strong>{{ learner_name }}</strong>
+    suite à la formation « <strong>{{ scope_label }}</strong> ».
+  </p>
+
+  <p class="body-text">
+    Madame, Monsieur,
+  </p>
+
+  <p class="body-text">
+    Le Centre de Services et de Formation a le plaisir d'attester que
+    <strong>{{ learner_name }}</strong> a suivi la formation
+    « <strong>{{ scope_label }}</strong> » dispensée au sein de notre établissement.
+  </p>
+
+  <p class="body-text">
+    Au cours de cette formation, l'apprenant a fait preuve d'assiduité, de rigueur
+    et d'un réel engagement dans l'acquisition des compétences visées.
+    Les résultats obtenus sont présentés ci-dessous :
+  </p>
+
+  <table class="summary-table">
+    <tr><td>Apprenant</td><td>{{ learner_name }}</td></tr>
+    <tr><td>Formation / Module</td><td>{{ scope_label }}</td></tr>
+    <tr><td>Taux de présence</td><td>{{ presence_percent }} %</td></tr>
+    <tr><td>Score d'évaluation</td><td>{{ test_score_percent }}</td></tr>
+    <tr>
+      <td>Avis</td>
+      <td>
+        <span class="result-badge {{ 'result-success' if system_result == 'success' else 'result-failure' }}">
+          {{ 'RECOMMANDÉ' if system_result == 'success' else 'NON RECOMMANDÉ' }}
+        </span>
+      </td>
+    </tr>
+  </table>
+
+  <p class="body-text closing">
+    En foi de quoi, nous recommandons vivement <strong>{{ learner_name }}</strong>
+    pour ses compétences professionnelles et son engagement tout au long de la formation.
+    Nous restons à votre disposition pour tout renseignement complémentaire.
+  </p>
+
+  <p class="body-text">
+    Veuillez agréer, Madame, Monsieur, l'expression de nos salutations distinguées.
+  </p>
+
+  <div class="signature-area">
+    <div class="sig-line"></div>
+    <div class="sig-name">Le Directeur Pédagogique</div>
+    <div class="sig-role">CSF — Centre de Services et de Formation</div>
+  </div>
+
+  <div class="footer">
+    <span>Réf. : REC-{{ doc_id }}</span>
+    <span>Document généré le {{ generation_date }}</span>
+    <span>CSF</span>
+  </div>
+</body>
+</html>

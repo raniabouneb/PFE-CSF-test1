@@ -1,0 +1,90 @@
+%% ============================
+%% VUE 1 — VISITEUR (SITE VITRINE)
+%% ============================
+classDiagram
+  direction LR
+
+  class Visiteur
+  class SiteVitrine
+  class Accueil
+  class Formation
+  class Reconversion
+  class FormationPonctuelle
+  class Certifications
+  class Partenaires
+  class BackendAPI
+  class BaseDeDonnees
+
+  Visiteur "1" --> "1" SiteVitrine : consulte
+  SiteVitrine "1" *-- "1" Accueil : page
+  SiteVitrine "1" *-- "1" Formation : page
+  SiteVitrine "1" *-- "1" Reconversion : page
+  SiteVitrine "1" *-- "1" FormationPonctuelle : page
+  SiteVitrine "1" *-- "1" Certifications : page
+  SiteVitrine "1" *-- "1" Partenaires : section
+
+  Accueil "1" ..> "1" BackendAPI : lit_donnees
+  Formation "1" ..> "1" BackendAPI : lit_donnees
+  Reconversion "1" ..> "1" BackendAPI : lit_donnees
+  FormationPonctuelle "1" ..> "1" BackendAPI : lit_donnees
+  Certifications "1" ..> "1" BackendAPI : lit_donnees
+  Partenaires "1" ..> "1" BackendAPI : lit_donnees
+
+  BackendAPI "1" --> "1" BaseDeDonnees : lit
+
+%% ============================
+%% VUE 2 — DASHBOARD + AUTH
+%% ============================
+classDiagram
+  direction LR
+
+  class Utilisateur
+  class Authentification
+  class DashboardApprenant
+  class DashboardAdmin
+  class GestionProfil
+  class GestionFormations
+  class GestionCertifications
+  class GestionCatalogue
+  class GestionApprenants
+  class BackendAPI
+  class BaseDeDonnees
+
+  Utilisateur "1" --> "1" Authentification : se_connecte
+  Authentification "1" ..> "1" BackendAPI : verifie_identite
+
+  Utilisateur "1" --> "0..1" DashboardApprenant : acces
+  Utilisateur "1" --> "0..1" DashboardAdmin : acces
+
+  DashboardApprenant "1" *-- "1" GestionProfil : module
+  DashboardApprenant "1" *-- "1" GestionFormations : module
+  DashboardApprenant "1" *-- "1" GestionCertifications : module
+
+  DashboardAdmin "1" *-- "1" GestionCatalogue : module
+  DashboardAdmin "1" *-- "1" GestionApprenants : module
+
+  DashboardApprenant "1" ..> "1" BackendAPI : consulte
+  DashboardAdmin "1" ..> "1" BackendAPI : gere
+  BackendAPI "1" --> "1" BaseDeDonnees : lit_ecrit
+
+%% ============================
+%% VUE 3 — CHAT IA
+%% ============================
+classDiagram
+  direction LR
+
+  class Utilisateur
+  class SiteWeb
+  class ChatIA
+  class ServiceIA
+  class BaseDocumentaire
+  class BackendAPI
+  class BaseDeDonnees
+
+  Utilisateur "1" --> "1" SiteWeb : utilise
+  SiteWeb "1" *-- "1" ChatIA : fonctionnalite
+
+  ChatIA "1" ..> "1" ServiceIA : envoie_question
+  ServiceIA "1" --> "1" BaseDocumentaire : recherche_contexte
+  ServiceIA "1" ..> "1" BackendAPI : contexte_metier
+  BackendAPI "1" --> "1" BaseDeDonnees : lit

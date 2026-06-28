@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/*
+ * Pas de variante dark pour le shell : avec prefers-color-scheme: dark, le body
+ * devenait quasi noir alors que les pages sont en blocs clairs — les marges
+ * (ex. footer mt-60) laissaient voir ce fond = « tache » noire.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #2563eb;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+  --color-destructive: #dc2626;
+  --color-accent: #f1f5f9;
+  --color-accent-foreground: #0f172a;
+  --color-input: #e2e8f0;
+  --color-ring: #2563eb;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  background-color: #ffffff;
+  /* Évite le scroll horizontal quand un enfant dépasse (grilles, marges négatives, min-width). */
+  overflow-x: clip;
+}
+
+/* Ancres / rechargement : scroll doux aligné sur `scrollIntoView` (respect réduit dans le JS). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background-color: #ffffff;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+/* FullCalendar admin theme overrides */
+.fc-admin-planning .fc {
+  --fc-border-color: #e5e7eb;
+  --fc-today-bg-color: rgba(56, 189, 248, 0.06);
+  --fc-page-bg-color: transparent;
+  font-size: 0.8125rem;
+}
+.fc-admin-planning .fc .fc-toolbar-title {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.fc-admin-planning .fc .fc-button {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.5rem;
+  border-color: #e5e7eb;
+  background: #fff;
+  color: #334155;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+.fc-admin-planning .fc .fc-button:hover {
+  background: #f4f7fb;
+}
+.fc-admin-planning .fc .fc-button-active,
+.fc-admin-planning .fc .fc-button-primary:not(:disabled).fc-button-active {
+  background: #0D3570;
+  color: #fff;
+  border-color: #0D3570;
+}
+.fc-admin-planning .fc .fc-daygrid-event {
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  padding: 1px 4px;
+  cursor: grab;
+}
+.fc-admin-planning .fc .fc-daygrid-event:active {
+  cursor: grabbing;
+}
+.fc-admin-planning .fc .fc-timegrid-event {
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: grab;
+}
+.fc-admin-planning .fc .fc-timegrid-event:active {
+  cursor: grabbing;
+}
+.fc-admin-planning .fc .fc-col-header-cell-cushion {
+  font-weight: 700;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+}
+.fc-admin-planning .fc .fc-daygrid-day-number {
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #475569;
+}
+.fc-admin-planning .fc td.fc-day-today .fc-daygrid-day-number {
+  background: #38bdf8;
+  color: #fff;
+  border-radius: 9999px;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Thin custom scrollbar for horizontal scroll containers */
+.scrollbar-thin::-webkit-scrollbar { height: 6px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+.scrollbar-thin { scrollbar-width: thin; scrollbar-color: #d1d5db transparent; }
+
+/* Chat CSF : split type IDE — site à droite, panneau chat à gauche (desktop) */
+@media (min-width: 768px) {
+  body.csf-chat-split-open {
+    padding-left: min(440px, 42vw);
+    transition: padding-left 0.25s ease;
+    box-sizing: border-box;
+  }
+}
+
+/* Cible module / certification : survol forcé immédiat, hover bloqué ailleurs */
+.csf-scroll-target-highlight {
+  position: relative;
+  z-index: 25;
+}
+
+.csf-scroll-target-highlight-group > article.csf-scroll-target-highlight {
+  transform: translateY(-0.25rem) scale(1.04) !important;
+  border-color: rgba(51, 95, 161, 0.5) !important;
+  box-shadow:
+    0 14px 36px -10px rgba(15, 40, 82, 0.5),
+    0 24px 52px -14px rgba(10, 32, 68, 0.5) !important;
+  transition: none !important;
+}
+
+/* ModuleCard : panneau survol actif tout de suite (sans fondu) */
+.csf-scroll-target-highlight-group > article > div:nth-child(1) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+.csf-scroll-target-highlight-group > article > div:nth-child(2) {
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+.csf-scroll-target-highlight-group > article > div:nth-child(3) {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transition: none !important;
+}
+
+/* Autres cartes module : pas d’effet hover pendant la session */
+body.csf-scroll-highlight-session .group:not(.csf-scroll-target-highlight-group) > article:hover {
+  transform: none !important;
+  border-color: rgba(51, 95, 161, 0.3) !important;
+  box-shadow: 0 10px 40px -14px rgba(31, 108, 163, 0.35) !important;
+}
+
+body.csf-scroll-highlight-session .group:not(.csf-scroll-target-highlight-group) > article:hover > div:nth-child(1) {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+body.csf-scroll-highlight-session .group:not(.csf-scroll-target-highlight-group) > article:hover > div:nth-child(2),
+body.csf-scroll-highlight-session .group:not(.csf-scroll-target-highlight-group) > article:hover > div:nth-child(3) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Certification et autres cartes sans wrapper `.group` */
+:not(.csf-scroll-target-highlight-group) > .csf-scroll-target-highlight {
+  transform: translateY(-0.25rem) scale(1.04);
+  box-shadow:
+    0 14px 36px -10px rgba(15, 40, 82, 0.5),
+    0 24px 52px -14px rgba(10, 32, 68, 0.5);
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .csf-scroll-target-highlight-group > article.csf-scroll-target-highlight,
+  :not(.csf-scroll-target-highlight-group) > .csf-scroll-target-highlight {
+    transform: translateY(-0.25rem) scale(1.02);
+  }
+}

@@ -1,0 +1,43 @@
+# Environment variables
+.env
+.env*.local
+frontend/.env
+frontend/.env*.local
+backend/.env
+ai-service/.env
+
+# Dependencies & build
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+out/
+frontend/out/
+
+.DS_Store
+*.pem
+
+# Python
+.venv/
+venv/
+backend/.venv/
+backend/**/__pycache__/
+backend/**/*.pyc
+ai-service/**/__pycache__/
+ai-service/**/*.pyc
+
+# IDE / tooling
+.vercel/
+*.tsbuildinfo
+frontend/next-env.d.ts
+
+# Dossiers d’import temporaires
+_import/
+_dashboard-import/
+.zip-import/
+ai-service/.venv/
+ai-service/.venv*/
+ai-service/vectorstore/
+
+# Cursor / assets locaux
+assets/

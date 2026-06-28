@@ -1,0 +1,20 @@
+Option 2 — Autre projet Next.js (ex. dossier frontend/)
+Copier ces dossiers dans le nouveau projet :
+
+components/shared/chatbot/   → 4 fichiers
+lib/chatbot/                 → 5 fichiers
+app/api/chatbot/analyze-cv/  → route API
+Puis :
+
+Installer les dépendances :
+
+npm install lucide-react pdf-parse
+Ajouter le widget dans le layout :
+
+import { ChatbotWidget } from '@/components/shared/chatbot/chatbot-widget'
+// ...
+<ChatbotWidget />
+Vérifier que Tailwind CSS est configuré (le widget utilise des classes Tailwind).
+
+Adapter @/ dans tsconfig.json si l’alias diffère.
+

@@ -1,0 +1,2 @@
+"""Sous-domaine admin planning."""
+

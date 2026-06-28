@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/*
+ * Pas de variante dark pour le shell : avec prefers-color-scheme: dark, le body
+ * devenait quasi noir alors que les pages sont en blocs clairs — les marges
+ * (ex. footer mt-60) laissaient voir ce fond = « tache » noire.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #2563eb;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+  --color-destructive: #dc2626;
+  --color-accent: #f1f5f9;
+  --color-accent-foreground: #0f172a;
+  --color-input: #e2e8f0;
+  --color-ring: #2563eb;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  background-color: #ffffff;
+  /* Évite le scroll horizontal quand un enfant dépasse (grilles, marges négatives, min-width). */
+  overflow-x: clip;
+}
+
+/* Ancres / rechargement : scroll doux aligné sur `scrollIntoView` (respect réduit dans le JS). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background-color: #ffffff;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  min-width: 0;
+  overflow-x: clip;
+}
